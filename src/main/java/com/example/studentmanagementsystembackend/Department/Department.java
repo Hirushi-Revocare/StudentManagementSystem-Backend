@@ -36,13 +36,11 @@ public class Department {
         this.name = name;
     }
 
-    public Department(String name) {
-        this.name = name;
-    }
-    @OneToMany(mappedBy = "department")
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private Set<Student> students;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private Set<Course> courses;
 
     @Override
