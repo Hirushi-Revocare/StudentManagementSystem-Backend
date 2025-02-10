@@ -32,13 +32,17 @@ public class Enrollment {
     public Enrollment() {
     }
 
-    public Enrollment(Long id, LocalDate date) {
+    public Enrollment(Long id, LocalDate date, Course course, Student student) {
         this.id = id;
         this.date = date;
+        this.course = course;
+        this.student = student;
     }
 
-    public Enrollment(LocalDate date) {
+    public Enrollment(LocalDate date, Course course, Student student) {
         this.date = date;
+        this.course = course;
+        this.student = student;
     }
 
     @ManyToOne
@@ -48,6 +52,9 @@ public class Enrollment {
     @ManyToOne
     @JoinColumn(name = "student_Id", nullable = false)
     private Student student;
+
+    public Enrollment(Long id, LocalDate date, Long courseId, Long studentId) {
+    }
 
     @Override
     public String toString() {
