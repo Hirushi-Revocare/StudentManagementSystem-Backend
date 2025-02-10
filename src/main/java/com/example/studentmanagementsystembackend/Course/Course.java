@@ -36,24 +36,32 @@ public class Course {
     public Course() {
     }
 
-    public Course(Long id, String courseCode, String name, Float credits) {
+    public Course(Long id, String courseCode, String name, Float credits, Set<Enrollment> enrollments, Department department) {
         this.id = id;
         this.courseCode = courseCode;
         this.name = name;
         this.credits = credits;
+        this.enrollments = enrollments;
+        this.department = department;
     }
 
-    public Course(String courseCode, String name, Float credits) {
+    public Course(String courseCode, String name, Float credits, Set<Enrollment> enrollments, Department department) {
         this.courseCode = courseCode;
         this.name = name;
         this.credits = credits;
+        this.enrollments = enrollments;
+        this.department = department;
     }
-    @OneToMany(mappedBy = "course")
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = false)
     private Set<Enrollment> enrollments;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_ID",nullable = false)
     private Department department;
+
+    public Course(Long id, String courseCode, String name, Float credits) {
+    }
 
     @Override
     public String toString() {
@@ -63,6 +71,7 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", credits=" + credits +
                 ", enrollments=" + enrollments +
+                ", department=" + department +
                 '}';
     }
 }
