@@ -1,6 +1,8 @@
 package com.example.studentmanagementsystembackend.Student;
-import java.util.List;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+@Service
 public interface StudentService {
     StudentDto createStudent(StudentDto studentDto);
     StudentDto getStudentById(Long studentId);

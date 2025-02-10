@@ -5,7 +5,8 @@ public class StudentMapper {
                 student.getId(),
                 student.getName(),
                 student.getEmail(),
-                student.getDob()
+                student.getDob(),
+                student.getDepartment().getId()
         );
     }
     public static Student mapToStudent(StudentDto studentDto){
@@ -13,7 +14,8 @@ public class StudentMapper {
                 studentDto.getId(),
                 studentDto.getName(),
                 studentDto.getEmail(),
-                studentDto.getDob()
+                studentDto.getDob(),
+                studentDto.getDepartmentId()
         );
     }
 }

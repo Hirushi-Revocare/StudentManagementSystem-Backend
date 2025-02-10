@@ -39,29 +39,32 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id,
-                   String name,
-                   String email,
-                   LocalDate dob) {
+    public Student(Long id, String name, String email, LocalDate dob, Department department, Set<Enrollment> enrollments) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
+        this.department = department;
+        this.enrollments = enrollments;
     }
 
-    public Student(String name,
-                   String email,
-                   LocalDate dob) {
+    public Student(String name, String email, LocalDate dob, Department department, Set<Enrollment> enrollments) {
         this.name = name;
         this.email = email;
         this.dob = dob;
+        this.department = department;
+        this.enrollments = enrollments;
     }
+
     @ManyToOne
     @JoinColumn(name = "department_Id", nullable = false)
     private Department department;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private Set<Enrollment> enrollments;
+
+    public Student(Long id, String name, String email, LocalDate dob, Long departmentId) {
+    }
 
     @Override
     public String toString() {
@@ -70,6 +73,8 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
+                ", department=" + department +
+                ", enrollments=" + enrollments +
                 '}';
     }
 }
