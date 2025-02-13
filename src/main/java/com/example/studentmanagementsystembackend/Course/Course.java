@@ -36,28 +36,26 @@ public class Course {
     public Course() {
     }
 
-    public Course(Long id, String courseCode, String name, Float credits, Set<Enrollment> enrollments, Department department) {
+    public Course(Long id, String courseCode, String name, Float credits,  Department department) {
         this.id = id;
         this.courseCode = courseCode;
         this.name = name;
         this.credits = credits;
-        this.enrollments = enrollments;
         this.department = department;
     }
 
-    public Course(String courseCode, String name, Float credits, Set<Enrollment> enrollments, Department department) {
+    public Course(String courseCode, String name, Float credits, Department department) {
         this.courseCode = courseCode;
         this.name = name;
         this.credits = credits;
-        this.enrollments = enrollments;
         this.department = department;
     }
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL,orphanRemoval = false)
     private Set<Enrollment> enrollments;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_ID",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "department_ID", nullable = false)
     private Department department;
 
     public Course(Long id, String courseCode, String name, Float credits) {
@@ -70,7 +68,6 @@ public class Course {
                 ", courseCode='" + courseCode + '\'' +
                 ", name='" + name + '\'' +
                 ", credits=" + credits +
-                ", enrollments=" + enrollments +
                 ", department=" + department +
                 '}';
     }

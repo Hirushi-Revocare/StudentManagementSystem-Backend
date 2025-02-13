@@ -39,21 +39,19 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, String name, String email, LocalDate dob, Department department, Set<Enrollment> enrollments) {
+    public Student(Long id, String name, String email, LocalDate dob, Department department) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
         this.department = department;
-        this.enrollments = enrollments;
     }
 
-    public Student(String name, String email, LocalDate dob, Department department, Set<Enrollment> enrollments) {
+    public Student(String name, String email, LocalDate dob, Department department) {
         this.name = name;
         this.email = email;
         this.dob = dob;
         this.department = department;
-        this.enrollments = enrollments;
     }
 
     @ManyToOne
@@ -74,7 +72,6 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
                 ", department=" + department +
-                ", enrollments=" + enrollments +
                 '}';
     }
 }

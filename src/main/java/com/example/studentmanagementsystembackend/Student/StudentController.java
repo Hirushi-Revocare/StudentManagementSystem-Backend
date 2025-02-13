@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+@CrossOrigin("*")
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/api/student")
@@ -16,7 +16,7 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto){
         StudentDto savedStudent = studentService.createStudent(studentDto);
-        return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
+        return new ResponseEntity(savedStudent, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

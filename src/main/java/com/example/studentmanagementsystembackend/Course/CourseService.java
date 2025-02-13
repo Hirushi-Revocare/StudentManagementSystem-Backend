@@ -1,5 +1,6 @@
 package com.example.studentmanagementsystembackend.Course;
 
+import com.example.studentmanagementsystembackend.Department.Department;
 import com.example.studentmanagementsystembackend.Student.StudentDto;
 import org.springframework.stereotype.Service;
 

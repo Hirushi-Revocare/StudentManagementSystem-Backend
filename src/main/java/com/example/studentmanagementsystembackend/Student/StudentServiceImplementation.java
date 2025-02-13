@@ -1,4 +1,6 @@
 package com.example.studentmanagementsystembackend.Student;
+import com.example.studentmanagementsystembackend.Department.Department;
+import com.example.studentmanagementsystembackend.Department.DepartmentRepository;
 import com.example.studentmanagementsystembackend.Exception.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,9 +11,15 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class StudentServiceImplementation implements StudentService {
     private StudentRepository studentRepository;
+    private DepartmentRepository departmentRepository;
     @Override
     public StudentDto createStudent(StudentDto studentDto) {
-        Student student = StudentMapper.mapToStudent(studentDto);
+        Department department = departmentRepository.findById(studentDto.getDepartmentId())
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+        Student student = StudentMapper.mapToStudent(studentDto, department);
+        if (student.getDepartment() == null) {
+            throw new IllegalArgumentException("Department cannot be null");
+        }
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.mapToStudentDto(savedStudent);
     }

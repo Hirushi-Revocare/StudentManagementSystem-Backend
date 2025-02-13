@@ -45,6 +45,10 @@ public class Enrollment {
         this.student = student;
     }
 
+    public Enrollment(Long id, LocalDate date, Long courseId, Long studentId) {
+    }
+
+
     @ManyToOne
     @JoinColumn(name = "course_Id",nullable = false)
     private Course course;
@@ -52,10 +56,6 @@ public class Enrollment {
     @ManyToOne
     @JoinColumn(name = "student_Id", nullable = false)
     private Student student;
-
-    public Enrollment(Long id, LocalDate date, Long courseId, Long studentId) {
-    }
-
     @Override
     public String toString() {
         return "Enrollment{" +
