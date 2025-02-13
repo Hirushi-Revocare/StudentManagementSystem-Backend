@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -38,10 +39,10 @@ public class Department {
 
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    private Set<Student> students;
+    private List<Student> students;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    private Set<Course> courses;
+    private List<Course> courses;
 
     @Override
     public String toString() {
