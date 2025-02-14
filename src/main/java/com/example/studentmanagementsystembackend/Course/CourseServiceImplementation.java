@@ -43,9 +43,12 @@ public class CourseServiceImplementation implements CourseService{
     @Override
     public CourseDto updateCourse(Long courseId, CourseDto updatedCourse) {
         Course course = courseRepository.findById(courseId).orElseThrow(()->new ResourceNotFoundException("Course not found"));
+        Department department = departmentRepository.findById(updatedCourse.getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found with ID: " + updatedCourse.getDepartmentId()));
         course.setCourseCode(updatedCourse.getCourseCode());
         course.setName(updatedCourse.getName());
         course.setCredits(updatedCourse.getCredits());
+        course.setDepartment(department);
         Course updatedCourseObj = courseRepository.save(course);
         return CourseMapper.mapToCourseDto(updatedCourseObj);
     }

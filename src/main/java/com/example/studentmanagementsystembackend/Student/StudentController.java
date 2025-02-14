@@ -1,4 +1,6 @@
 package com.example.studentmanagementsystembackend.Student;
+import com.example.studentmanagementsystembackend.Department.DepartmentDto;
+import com.example.studentmanagementsystembackend.Department.DepartmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

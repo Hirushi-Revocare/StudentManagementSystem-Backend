@@ -9,6 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping(path = "/api/department")
 public class DepartmentController {
     private DepartmentService departmentService;

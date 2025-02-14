@@ -1,6 +1,7 @@
 package com.example.studentmanagementsystembackend.Department;
 import com.example.studentmanagementsystembackend.Course.Course;
 import com.example.studentmanagementsystembackend.Student.Student;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

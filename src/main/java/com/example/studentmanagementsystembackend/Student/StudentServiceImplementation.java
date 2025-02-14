@@ -40,9 +40,12 @@ public class StudentServiceImplementation implements StudentService {
     @Override
     public StudentDto updateStudent(Long studentId, StudentDto updatedStudent) {
         Student student= studentRepository.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("Student is not found with the given ID" + studentId));
+        Department department = departmentRepository.findById(updatedStudent.getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found with ID: " + updatedStudent.getDepartmentId()));
         student.setName(updatedStudent.getName());
         student.setEmail(updatedStudent.getEmail());
         student.setDob(updatedStudent.getDob());
+        student.setDepartment(department);
         Student updatedStudentObj = studentRepository.save(student);
         return StudentMapper.mapToStudentDto(updatedStudentObj);
     }

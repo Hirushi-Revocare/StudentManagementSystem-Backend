@@ -51,7 +51,13 @@ public class EnrollmentServiceImplementation implements EnrollmentService{
     @Override
     public EnrollmentDto updateEnrollment(Long enrollmentId, EnrollmentDto updatedEnrollment) {
         Enrollment enrollment = enrollmentRepository.findById(enrollmentId).orElseThrow(()->new ResourceNotFoundException("Enrollment Not Found"));
+        Student student = studentRepository.findById(updatedEnrollment.getStudentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with ID: " + updatedEnrollment.getStudentId()));
+        Course course = courseRepository.findById(updatedEnrollment.getCourseId())
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found with ID: " + updatedEnrollment.getCourseId()));
         enrollment.setDate(updatedEnrollment.getDate());
+        enrollment.setStudent(student);
+        enrollment.setCourse(course);
         Enrollment updatedEnrollmentObj = enrollmentRepository.save(enrollment);
         return EnrollmentMapper.mapToEnrollmentDto(updatedEnrollmentObj);
     }
